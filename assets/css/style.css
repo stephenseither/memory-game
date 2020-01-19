@@ -1,9 +1,16 @@
 .game {
     text-align: center;
-    border-radius: 40px;
+    border-radius: 15px;
 }
 
 .btn {
     width: 400px;
 }
 
+.pic {
+    border-radius: 15px;
+}
+
+h1 {
+    font-size: 4em;
+}

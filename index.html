@@ -6,8 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link rel="stylesheet" href="assets/css/style.css" type="text/css">
-    <script src="assets/js/main.js"></script>
+    <link rel="stylesheet" href="assets/css/style.css" type="text/css" />
 
     <title>Memory Game</title>
 </head>
@@ -19,45 +18,58 @@
             </div>
         </div>
         <div class="row">
-        <div class="col-md-3"> <p> TIME: <span id="timer"> </span> </p></div>
-        <div class="col-md-6"></div>
-        <div class="col-md-3 moves"><p class="moves">MOVES</p></div>
+            <div class="col-md-3"> <h2> TIME: <span id="timer">100 </span> </h2></div>
+            <div class="col-md-6"></div>
+            <div class="col-md-3 moves"><h2>MOVES: <span id="moves">0</span></h2></div>
         </div>
         <div class="row">
-            <div class="col-md-12 pics">
-                <img src="assets/imgs/card-back.png" alt="pic_1" class="m-3 card-back" height="130px" width="130px" onclick="choose (0)">
-                <img src="assets/imgs/card-back.png" alt="pic_1" class="m-3 card-back" height="130px" width="130px" onclick="choose (1)">
-                <img src="assets/imgs/card-back.png" alt="pic_1" class="m-3 card-back" height="130px" width="130px" onclick="choose (2)">
-                <img src="assets/imgs/card-back.png" alt="pic_1" class="m-3 card-back" height="130px" width="130px" onclick="choose (3)">
+            <div class="col-md-12">
+                        <div class="pic">
+                            <img src="assets/imgs/card-back.png" alt="card-back" class="m-3 pic" height="130px" width="130px">
+                            <img src="assets/imgs/card-back.png" alt="pic-1" class="m-3 pic pic-value" height="130px" width="130px">
+                            <img src="assets/imgs/card-back.png" alt="card-back" class="m-3 pic" height="130px" width="130px">
+                            <img src="assets/imgs/card-back.png" alt="card-back" class="m-3 pic" height="130px" width="130px">
+                            <img src="assets/imgs/card-back.png" alt="card-back" class="m-3 pic" height="130px" width="130px">
+                        </div>
             </div>
         </div>
         <div class="row">
-            <div class="col-md-12 pics">
-                <img src="assets/imgs/card-back.png" alt="pic_1" class="m-3 card-back" height="130px" width="130px" onclick="choose (4)">
-                <img src="assets/imgs/card-back.png" alt="pic_1" class="m-3 card-back" height="130px" width="130px" onclick="choose (5)">
-                <img src="assets/imgs/card-back.png" alt="pic_1" class="m-3 card-back" height="130px" width="130px" onclick="choose (6)">
-                <img src="assets/imgs/card-back.png" alt="pic_1" class="m-3 card-back" height="130px" width="130px" onclick="choose (7)">
+            <div class="col-md-12">
+                <div class="pic">
+                        <img src="assets/imgs/card-back.png" alt="card-back" class="m-3 pic" height="130px" width="130px">
+                        <img src="assets/imgs/card-back.png" alt="card-back" class="m-3 pic" height="130px" width="130px">
+                        <img src="assets/imgs/card-back.png" alt="card-back" class="m-3 pic" height="130px" width="130px">
+                        <img src="assets/imgs/card-back.png" alt="card-back" class="m-3 pic" height="130px" width="130px">
+                        <img src="assets/imgs/card-back.png" alt="card-back" class="m-3 pic" height="130px" width="130px">
+                </div>
             </div>
         </div>
         <div class="row">
-            <div class="col-md-12 pics">
-                <img src="assets/imgs/card-back.png" alt="pic_1" class="m-3 card-back" height="130px" width="130px">
-                <img src="assets/imgs/card-back.png" alt="pic_1" class="m-3 card-back" height="130px" width="130px">
-                <img src="assets/imgs/card-back.png" alt="pic_1" class="m-3 card-back" height="130px" width="130px">
-                <img src="assets/imgs/card-back.png" alt="pic_1" class="m-3 card-back" height="130px" width="130px">
+            <div class="col-md-12">
+                <div class="pic">
+                        <img src="assets/imgs/card-back.png" alt="card-back" class="m-3 pic" height="130px" width="130px">
+                        <img src="assets/imgs/card-back.png" alt="card-back" class="m-3 pic" height="130px" width="130px">
+                        <img src="assets/imgs/card-back.png" alt="card-back" class="m-3 pic" height="130px" width="130px">
+                        <img src="assets/imgs/card-back.png" alt="card-back" class="m-3 pic" height="130px" width="130px">
+                        <img src="assets/imgs/card-back.png" alt="card-back" class="m-3 pic" height="130px" width="130px">
+                </div>
             </div>
         </div>
         <div class="row">
-            <div class="col-md-12 pics">
-                <img src="assets/imgs/card-back.png" alt="pic_1" class="m-3 card-back" height="130px" width="130px">
-                <img src="assets/imgs/card-back.png" alt="pic_1" class="m-3 card-back" height="130px" width="130px">
-                <img src="assets/imgs/card-back.png" alt="pic_1" class="m-3 card-back" height="130px" width="130px">
-                <img src="assets/imgs/card-back.png" alt="pic_1" class="m-3 card-back" height="130px" width="130px">
+            <div class="col-md-12">
+                <div class="pic">
+                        <img src="assets/imgs/card-back.png" alt="card-back" class="m-3 pic" height="130px" width="130px">
+                        <img src="assets/imgs/card-back.png" alt="card-back" class="m-3 pic" height="130px" width="130px">
+                        <img src="assets/imgs/card-back.png" alt="card-back" class="m-3 pic" height="130px" width="130px">
+                        <img src="assets/imgs/card-back.png" alt="card-back" class="m-3 pic" height="130px" width="130px">
+                        <img src="assets/imgs/card-back.png" alt="card-back" class="m-3 pic" height="130px" width="130px">
+                </div>
             </div>
         </div>
+        
         <div class="row py-2">
             <div class="col-md-12">
-                <button type="button" class="btn btn-success">Play</button>
+                <button type="button" class="btn btn-success" onclick="startGame ()">Play</button>
             </div>
         </div>
         <div class="row py-2">
@@ -72,4 +84,5 @@
         </div>
     </div>
 </body>
+<script src="assets/js/main.js"></script>
 </html>

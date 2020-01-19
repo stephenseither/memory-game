@@ -1,51 +1,56 @@
-function mix (totalTime, cards){
-    this.cardsArray = cards;
-    this.totalTime = totalTime;
-    this.timeRemaining = totalTime;
-    this.timer = document.getElementById('timer');
-    this.ticker = document.getElementById('flips');
+class MemoryGame {
+    constructor (totalTime, pics) {
+        this.picArray = pics;
+        this.totalTime = totalTime;
+        this.timeRemaining = totalTime;
+        this.timer = document.getElementById('timer');
+        this.moves = document.getElementById('moves');
+    }
 
-    function startGame () {
-        this.cardToCheck = null;
+    startGame () {
         this.totalClicks = 0;
         this.totalTime = this.totalTime;
-        this.matchedCards = [];
-        this.busy = true;
-        setTimeout(( => {
-            this.shuffleCards();
-            this.countdown = this.startCountdown();
+        setTimeout(() => {
+            this.shuffle();
+            this.countdown = this.startCountDown();
             this.busy = false;
         }, 500);
-        this.hideCards();
         this.timer.innerText = this.timeRemaining;
-        this.ticker.innerText = this.totalClicks;
-        this.shuffleCards();
-
+        this.moves.innerText = this.totalClicks;
+        this.shuffle();
     }
-    function hideCards() {
-        this.cardsArray.forEach(card => {
-            card.classList.remove('visible');
-            this.classList.remove('matched');
-        });
+
+    startCountDown () {
+        return setInterval(() => {
+            this.timeRemaining--;
+            this.timer.innerText = this.timeRemaining;
+            if (this.timeRemaining === 0) {
+                this.gameOver();
+            }
+        }, 1000)
     }
-    function flipCard (card) {
-        if (this.canFlipCard(card)) {
-            this.totalClicks++;
-            this.ticker.innerText = this.totalClicks;
-            card.classList.add('visible');
 
+    shuffle(array) {
+        var currentIndex = array.length, temporaryValue, randomIndex;
 
+        while (currentIndex !== 0) {
+            randomIndex = Math.floor(Math.random() * currentIndex);
+            currentIndex -= 1;
+            temporaryValue = array[currentIndex];
+            array[currentIndex] = array[randomIndex];
+            array[randomIndex] = temporaryValue;
         }
-    }
-    function shuffleCards () {
-        for (let i = this.cardsArray.length -1; i >0; i--) {
-            let randIndex = Math.floor(Math.random()*(i+1));
-            cardsArray[randIndex].style.order = i;
-            this.cardsArray[i].style.order = randIndex;
-        }
-    }
-    function canFlipCard (card) {
-        return !this.busy && !this.matchedCards.includes(card) && !== this.cardToCheck;
+        return array;
     }
 }
 
+function ready () {
+    let pics = Array.from(document.getElementsByClassName('pic'));
+    let game = new MemoryGame(100, pics);
+    pic.forEach(pic => {
+        pic.addEventListener('click', () => {
+        game.flipPic(Pic);
+        });
+    });
+    
+}
