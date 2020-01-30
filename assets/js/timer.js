@@ -34,6 +34,13 @@ var handler;
                 display = $('#timer');
             startTimer(fiveMinutes, display);
         });
+
+        function init() {
+            let pic = Array.from(document.getElementsByClassName('flip-card'));
+            let game = new MemoryGame (pic);
+
+            game.startGame();
+        }
     });
 });
 
@@ -77,12 +84,6 @@ class MemoryGame {
             this.totalClicks ++;
             this.ticker.innerText = this.totalClicks;
             pic.classList.add('visible');
-
-            if(this.picToCheck) {
-                this.checkforPicMatch(pic);
-            } else {
-                this.picToCheck = pic;
-            }
         }
     }
     shuffle(cardsArray) {
@@ -92,11 +93,4 @@ class MemoryGame {
             picArray[i].style.order = randIndex;
         }
     }
-}
-
-function init() {
-    let pic = Array.from(document.getElementsByClassName('flip-card'));
-    let game = new MemoryGame (pic);
-
-    game.startGame();
 }
