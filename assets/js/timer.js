@@ -1,14 +1,6 @@
 $(document).ready(function() {
 var handler;
 
-    $('#reset').click(function () {
-        if (handler) {
-            clearInterval(handler);
-            clearInterval(moves);
-            clearInterval();
-        }
-    });
-
     $('#play').click(function starter() {
 
         function startTimer(duration, display) {
@@ -22,75 +14,71 @@ var handler;
 
                 display.text(minutes + ":" + seconds);
 
-                if (timer === 0) {
-                    this.gameOver();
+                if (--timer <  0) {
+                    timer = duration;
+                    clearInterval(handler);
+                    alert('Game Over!');
                 }
 
             }, 1000);
         }
 
         jQuery(function ($) {
-            var fiveMinutes = 60 * 2,
+            var twoMinutes = 60 * 2,
                 display = $('#timer');
-            startTimer(fiveMinutes, display);
-        });
+            startTimer(twoMinutes, display);
+        }); 
+    });
 
-        function init() {
-            let pic = Array.from(document.getElementsByClassName('flip-card'));
-            let game = new MemoryGame (pic);
-
-            game.startGame();
-        }
+     $('#reset').click(function () {
+            clearInterval(handler);
     });
 });
 
-class MemoryGame {
-    constructor (pics) {
-        this.picArray = pics;
+document.body.onload = startGame();
+
+let pic = document.getElementsByClassName("pic");
+let pics = [...pic];
+var interval;
+
+// Fisher-Yates Shuffle 
+function shuffle(array) {
+    var currentIndex = array.length, temporaryValue, randomIndex;
+
+    while (currentIndex !== 0) {
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex -= 1;
+        temporaryValue = array[currentIndex];
+        array[currentIndex] = array[randomIndex];
+        array[randomIndex] = temporaryValue;
     }
 
-    startGame() {
-        this.totalClicks = 0;
-        this.picsToCheck = null;
-        this.matchedPics = [];
-        this.busy = true;
-        setTimeout(() => {
-            this.shuffle(this.picsArray);
-            this.busy = false;
-        }, 500)
-        this.hidePics();
+    return array;
+};
+
+function startGame() {
+        matchedPics = [];
+        pics = shuffle(pics);
+        hidePics();
         this.ticker.innerText = this.totalClicks;
     }
 
-    gameOver () {
-        clearInterval(handler);
-        alert("Game Over!")
-    }
-
-    victory() {
-        clearInterval(handler);
+function victory() {
+        clearInterval(interval);
         alert("Congratulations! You have won!");
-    }
+}
 
-    hidePics() {
+function hidePics() {
         this.picsArray.forEach(pic => {
             pic.classList.remove('visisble');
             pic.classList.remove('matched');
         });
-    }
+}
 
-    flipPic(pic) {
+function flipPic(pic) {
         if(this.canFlip(pic)) {
             this.totalClicks ++;
             this.ticker.innerText = this.totalClicks;
             pic.classList.add('visible');
         }
-    }
-    shuffle(cardsArray) {
-        for (let i = picArray.length - 1; i > 0; i--) {
-            let randIndex = Math.floor(Math.random() * (i + 1));
-            picArray[randIndex].style.order = i;
-            picArray[i].style.order = randIndex;
-        }
-    }
 }

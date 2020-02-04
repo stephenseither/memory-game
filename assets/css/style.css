@@ -11,10 +11,6 @@
     border-radius: 15px;
 }
 
-h1 {
-    font-size: 4em;
-}
-
 /*----------------- Card Flipping Animation -----------------*/
 
 .flip-card {
@@ -32,10 +28,6 @@ h1 {
   transform-style: preserve-3d;
 }
 
-.flip-card:hover .flip-card-inner {
-  transform: rotateY(180deg);
-}
-
 .flip-card-front, .flip-card-back {
   position: absolute;
   width: 100%;
@@ -46,5 +38,5 @@ h1 {
 
 .flip-card-back {
     transform: rotateY(180deg);
-   margin: auto;
+    margin: auto;
 }
