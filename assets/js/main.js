@@ -1,3 +1,5 @@
+// Timer 
+
 $(document).ready(function() {
 var handler;
 
@@ -35,11 +37,19 @@ var handler;
     });
 });
 
-document.body.onload = startGame();
 
-let pic = document.getElementsByClassName("pic");
-let pics = [...pic];
+// Shuffle cards when page is loaded 
+window.onload = startGame();
+
+// Declarations 
+let card = document.getElementsByClassName("pic");
+let cards = [...card];
 var interval;
+let counter = document.querySelector(".moves");
+let matchedCards = document.getElementsByClassName("match");
+for (var i = 0; i<cards.length; i++) {
+    cards[i].addEventListener("click", displayCard);
+};
 
 // Fisher-Yates Shuffle 
 function shuffle(array) {
@@ -56,29 +66,78 @@ function shuffle(array) {
     return array;
 };
 
+// Function to start a new game 
 function startGame() {
-        matchedPics = [];
-        pics = shuffle(pics);
-        hidePics();
-        this.ticker.innerText = this.totalClicks;
-    }
+        visiblePics = [];
+        let shuffledCards = shuffle(cards);
+        for (var i= 0; i < shuffledCards.length; i++){
+            [].forEach.call(shuffledCards, function(item){
+                deck.appendChild(item);
+            });
+        } 
+         for (var i = 0; i < cards.length; i++){
+            deck.innerHTML = "";
+            [].forEach.call(cards, function(item) {deck.appendChild(item);});
+            cards[i].classList.remove("open", "match", "disabled");
+        }
+        moves = 0;
+        counter.innerHTML = moves;
+}
+var displayCard = function (){
+    this.classList.toggle("open");
+    this.classList.toggle("disabled");
+};
 
 function victory() {
         clearInterval(interval);
         alert("Congratulations! You have won!");
 }
 
-function hidePics() {
-        this.picsArray.forEach(pic => {
-            pic.classList.remove('visisble');
-            pic.classList.remove('matched');
-        });
+
+function cardOpen() {
+    openedCards.push(this);
+    var len = openedCards.length;
+    if(len === 2){
+        moveCounter();
+        if(openedCards[0].type === openedCards[1].type){
+            matched();
+        } else {
+            unmatched();
+        }
+    }
 }
 
-function flipPic(pic) {
-        if(this.canFlip(pic)) {
-            this.totalClicks ++;
-            this.ticker.innerText = this.totalClicks;
-            pic.classList.add('visible');
+function matched() {
+    openedCards[0].classList.add("match", "disabled");
+    openedCards[1].classList.add("match", "disabled");
+    openedCards[0].classList.remove("open");
+    openedCards[1].classList.remove("open");
+    openedCards = [];
+}
+
+function unmatched(){
+    openedCards[0].classList.add("unmatched");
+    openedCards[1].classList.add("unmatched");
+    disable();
+    setTimeout(function(){
+        openedCards[0].classList.remove("open", "unmatched");
+        openedCards[1].classList.remove("open", "unmatched");
+        enable();
+        openedCards = [];
+    },1000);
+}
+
+function disable(){
+    Array.prototype.filter.call(cards, function(card){
+        card.classList.add('disabled');
+    });
+}
+
+function enable(){
+    Array.prototype.filter.call(cards, function(card){
+        card.classList.remove('disabled');
+        for(var i = 0; i < matchedCard.length; i++){
+            matchedCard[i].classList.add("disabled");
         }
+    });
 }
