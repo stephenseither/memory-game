@@ -1,3 +1,14 @@
+// Declarations 
+let card = document.getElementsByClassName("pic");
+let cards = [...card];
+const game = document.getElementById("game");
+var interval;
+let counter = document.querySelector(".moves");
+let matchedCards = document.getElementsByClassName("match");
+for (var i = 0; i<cards.length; i++) {
+    cards[i].addEventListener("click", displayCard);
+};
+
 // Timer 
 
 $(document).ready(function() {
@@ -41,16 +52,6 @@ var handler;
 // Shuffle cards when page is loaded 
 window.onload = startGame();
 
-// Declarations 
-let card = document.getElementsByClassName("pic");
-let cards = [...card];
-var interval;
-let counter = document.querySelector(".moves");
-let matchedCards = document.getElementsByClassName("match");
-for (var i = 0; i<cards.length; i++) {
-    cards[i].addEventListener("click", displayCard);
-};
-
 // Fisher-Yates Shuffle 
 function shuffle(array) {
     var currentIndex = array.length, temporaryValue, randomIndex;
@@ -72,19 +73,19 @@ function startGame() {
         let shuffledCards = shuffle(cards);
         for (var i= 0; i < shuffledCards.length; i++){
             [].forEach.call(shuffledCards, function(item){
-                deck.appendChild(item);
+                game.appendChild(item);
             });
         } 
          for (var i = 0; i < cards.length; i++){
-            deck.innerHTML = "";
-            [].forEach.call(cards, function(item) {deck.appendChild(item);});
-            cards[i].classList.remove("open", "match", "disabled");
+            game.innerHTML = "";
+            [].forEach.call(cards, function(item) {game.appendChild(item);});
+            cards[i].classList.remove("clicked", "match", "disabled");
         }
         moves = 0;
         counter.innerHTML = moves;
 }
 var displayCard = function (){
-    this.classList.toggle("open");
+    this.classList.toggle("clicked");
     this.classList.toggle("disabled");
 };
 
@@ -110,8 +111,8 @@ function cardOpen() {
 function matched() {
     openedCards[0].classList.add("match", "disabled");
     openedCards[1].classList.add("match", "disabled");
-    openedCards[0].classList.remove("open");
-    openedCards[1].classList.remove("open");
+    openedCards[0].classList.remove("clicked");
+    openedCards[1].classList.remove("clicked");
     openedCards = [];
 }
 
@@ -120,8 +121,8 @@ function unmatched(){
     openedCards[1].classList.add("unmatched");
     disable();
     setTimeout(function(){
-        openedCards[0].classList.remove("open", "unmatched");
-        openedCards[1].classList.remove("open", "unmatched");
+        openedCards[0].classList.remove("clicked", "unmatched");
+        openedCards[1].classList.remove("clicked", "unmatched");
         enable();
         openedCards = [];
     },1000);
