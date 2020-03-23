@@ -48,10 +48,6 @@ var handler;
     });
 });
 
-
-// Shuffle cards when page is loaded 
-window.onload = startGame();
-
 // Fisher-Yates Shuffle 
 function shuffle(array) {
     var currentIndex = array.length, temporaryValue, randomIndex;
@@ -71,16 +67,6 @@ function shuffle(array) {
 function startGame() {
         visiblePics = [];
         let shuffledCards = shuffle(cards);
-        for (var i= 0; i < shuffledCards.length; i++){
-            [].forEach.call(shuffledCards, function(item){
-                game.appendChild(item);
-            });
-        } 
-         for (var i = 0; i < cards.length; i++){
-            game.innerHTML = "";
-            [].forEach.call(cards, function(item) {game.appendChild(item);});
-            cards[i].classList.remove("clicked", "match", "disabled");
-        }
         moves = 0;
         counter.innerHTML = moves;
 }
@@ -142,3 +128,6 @@ function enable(){
         }
     });
 }
+
+// Shuffle cards when page is loaded 
+window.onload = startGame();
